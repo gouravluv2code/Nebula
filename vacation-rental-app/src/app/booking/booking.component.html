@@ -1,0 +1,55 @@
+<!-- booking.component.html -->
+<h2>Booking Management</h2>
+<hr>
+
+<!-- Add Booking Form -->
+<div>
+  <h3>Add Booking</h3>
+  <form (submit)="addBooking()">
+    <label for="propertyId">Property:</label>
+    <select id="propertyId" name="propertyId" [(ngModel)]="newBooking.propertyId" required>
+      <option *ngFor="let property of properties" [value]="property.id">{{ property.propertyName }}</option>
+    </select>
+
+    <label for="guestId">Guest:</label>
+    <select id="guestId" name="guestId" [(ngModel)]="newBooking.guestId" required>
+      <option *ngFor="let guest of guests" [value]="guest.id">{{ guest.guestName }}</option>
+    </select>
+
+    <label for="checkInDate">Check-In Date:</label>
+    <input type="date" id="checkInDate" name="checkInDate" [(ngModel)]="newBooking.checkInDate" required>
+
+    <label for="checkOutDate">Check-Out Date:</label>
+    <input type="date" id="checkOutDate" name="checkOutDate" [(ngModel)]="newBooking.checkOutDate" required>
+
+    <!-- Add other booking fields as needed -->
+
+    <button type="submit">Add Booking</button>
+  </form>
+</div>
+
+<!-- Booking List -->
+<div>
+  <h3>Booking List</h3>
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Guest</th>
+      <th>Check-In Date</th>
+      <th>Check-Out Date</th>
+      <!-- Add other booking field headers as needed -->
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let booking of bookings">
+      <td>{{ booking.propertyName }}</td>
+      <td>{{ booking.guestName }}</td>
+      <td>{{ booking.checkInDate }}</td>
+      <td>{{ booking.checkOutDate }}</td>
+      <!-- Display other booking fields as needed -->
+      <td>
+        <button (click)="editBooking(booking)">Edit</button>
+        <button (click)="deleteBooking(booking.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

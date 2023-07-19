@@ -1,0 +1,61 @@
+<!-- host.component.html -->
+<h2>Host Management</h2>
+<hr>
+
+<!-- Add Host Form -->
+<div>
+  <h3>Add Host</h3>
+  <form (submit)="addHost()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="newHost.name" required>
+
+    <label for="status">Host Status:</label>
+    <input type="checkbox" id="status" name="status" [(ngModel)]="newHost.status">
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" [(ngModel)]="newHost.location" required>
+
+    <label for="propertyType">Property Type:</label>
+    <select id="propertyType" name="propertyType" [(ngModel)]="newHost.propertyType" required>
+      <option value="Apartment">Apartment</option>
+      <option value="House">House</option>
+      <option value="Unique Homes">Unique Homes</option>
+    </select>
+
+    <label for="about">About:</label>
+    <textarea id="about" name="about" [(ngModel)]="newHost.about" rows="4" cols="50" required></textarea>
+
+    <label for="hostingSince">Hosting Since:</label>
+    <input type="date" id="hostingSince" name="hostingSince" [(ngModel)]="newHost.hostingSince" required>
+
+    <button type="submit">Add Host</button>
+  </form>
+</div>
+
+<!-- Host List -->
+<div>
+  <h3>Host List</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Location</th>
+      <th>Property Type</th>
+      <th>About</th>
+      <th>Hosting Since</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let host of hosts">
+      <td>{{ host.name }}</td>
+      <td>{{ host.status ? 'Active' : 'Inactive' }}</td>
+      <td>{{ host.location }}</td>
+      <td>{{ host.propertyType }}</td>
+      <td>{{ host.about }}</td>
+      <td>{{ host.hostingSince }}</td>
+      <td>
+        <button (click)="editHost(host)">Edit</button>
+        <button (click)="deleteHost(host.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,43 @@
+<!-- property.component.html -->
+<h2>Property Management</h2>
+<hr>
+
+<!-- Add Property Form -->
+<div>
+  <h3>Add Property</h3>
+  <form (submit)="addProperty()">
+    <label for="hostId">Host:</label>
+    <select id="hostId" name="hostId" [(ngModel)]="newProperty.hostId" required>
+      <option *ngFor="let host of hosts" [value]="host.id">{{ host.name }}</option>
+    </select>
+
+    <label for="propertyName">Property Name:</label>
+    <input type="text" id="propertyName" name="propertyName" [(ngModel)]="newProperty.propertyName" required>
+
+    <!-- Add other property fields as needed -->
+
+    <button type="submit">Add Property</button>
+  </form>
+</div>
+
+<!-- Property List -->
+<div>
+  <h3>Property List</h3>
+  <table>
+    <tr>
+      <th>Host</th>
+      <th>Property Name</th>
+      <!-- Add other property field headers as needed -->
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let property of properties">
+      <td>{{ property.hostName }}</td>
+      <td>{{ property.propertyName }}</td>
+      <!-- Display other property fields as needed -->
+      <td>
+        <button (click)="editProperty(property)">Edit</button>
+        <button (click)="deleteProperty(property.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

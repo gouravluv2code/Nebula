@@ -1,0 +1,55 @@
+<!-- guest.component.html -->
+<h2>Guest Management</h2>
+<hr>
+
+<!-- Add Guest Form -->
+<div>
+  <h3>Add Guest</h3>
+  <form (submit)="addGuest()">
+    <label for="guestName">Name:</label>
+    <input type="text" id="guestName" name="guestName" [(ngModel)]="newGuest.guestName" required>
+
+    <label>Gender:</label>
+    <label>
+      <input type="radio" name="gender" [(ngModel)]="newGuest.gender" value="Male" required> Male
+    </label>
+    <label>
+      <input type="radio" name="gender" [(ngModel)]="newGuest.gender" value="Female" required> Female
+    </label>
+    <label>
+      <input type="radio" name="gender" [(ngModel)]="newGuest.gender" value="Other" required> Other
+    </label>
+
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="newGuest.dateOfBirth" required>
+
+    <label for="bio">Bio:</label>
+    <textarea id="bio" name="bio" [(ngModel)]="newGuest.bio" rows="4" cols="50" required></textarea>
+
+    <button type="submit">Add Guest</button>
+  </form>
+</div>
+
+<!-- Guest List -->
+<div>
+  <h3>Guest List</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Date of Birth</th>
+      <th>Bio</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let guest of guests">
+      <td>{{ guest.guestName }}</td>
+      <td>{{ guest.gender }}</td>
+      <td>{{ guest.dateOfBirth }}</td>
+      <td>{{ guest.bio }}</td>
+      <td>
+        <button (click)="editGuest(guest)">Edit</button>
+        <button (click)="deleteGuest(guest.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
